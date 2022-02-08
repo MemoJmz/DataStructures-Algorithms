@@ -1,0 +1,173 @@
+Notación Asintótica y Complejidad Computacional
+
+Cuando hablamos del tiempo de ejecución de un algoritmo, ¿Qué interpretamos con eso?
+
+Primero necesitamos entender lo que se llama orden de crecimiento.
+
+El orden de crecimiento del tiempo de ejecución de un algoritmo, da una caracterización sencilla de la eficiencia de dicho algoritmo.
+Respecto al tamaño del problema crece.
+No da una medida estándar, a menos que cumpla una condición (la notación asintótica).
+
+--------------------------------------------------------------------------------
+
+Notación asintótica
+
+Notación O:
+O(g(n)) = { f(n) : Existe c>0, n_0 \in \N o {0}, tal que 0 <= f(n) <= cg(n), Para todo n >= n_0 }
+
+f(n) es el tiempo de ejecución
+
+--------------------------------------------------------------------------------
+
+Ejemplo1 : Demostrar 3n^2 + 10n + 5 \in O(n^2)
+
+Si pasara eso  (Esto para encontrar n_0 y c)...
+                 0 <= 3n^2 + 10n + 5 <= c n^2
+implica          0 <= 3 + 10/n + 5/n^2 <= c
+
+Como 1/n y 1/n^2 son decrecientes y funciones enteras
+Para n = 1 tenemos que c = 18
+
+
+Ejemplo 2: Demuestra que 2n^2 \notin O(n)
+
+Supongamos que si lo hace, entonces exiten n_0 y c tales que
+            0 <= 2 n^2 <= c n
+Implica     0 <= 2 n <= c    pues n \noteq 0
+Lo cual es imposible pues la función 2n no es acotada!!!!
+
+--------------------------------------------------------------------------------
+
+Me sirven para demostrar el orden de ejecución de un algoritmo
+
+Por ejemplo: No existe un algoritmo de ordenamiento basado en comparación que sea
+más rápido que  O(n log n)
+
+--------------------------------------------------------------------------------
+
+Notación Omega:
+
+Omega(g(n)) = { f(n) : Existe c>0, n_0 \in \N o {0}, tal que 0 <= c g(n) <= f(n), Para todo n >= n_0 }
+
+"Mi tiempo de ejecución no puede ser mejor que g(n)"
+
+--------------------------------------------------------------------------------
+
+Ejemplo 3: Demostrar f(n) = 3n + 5 \in \Omega(n)
+
+Existe c, n_0 tal que:
+
+            0 <= c n <= 3n + 5
+Implica     0 <= c   <= 3 + 5/n        pues n \noteq 0
+
+Como queremos una cota inferior, necesitamos encontrar el menor valor de la derecha
+Entonces para c = 3 y n_0 = 1 se cumple siempre.
+
+
+Ejemplo 4: f(n) \n O(g(n)) <=> g(n) \in \Omega(f(n))
+
+=>  Existe c>0 y n_0 natural tal que
+
+0 <= f(n) <= c g(n), implica 0 <= 1/c f(n) <= g(n).
+
+Entonces para el mismo n_0 y 1/c se cumple.
+El regreso es análogo.
+
+Ejemplo 5: demostrar que f(n) = n^2 \notin \Omega(n^3)
+Por contradicción, supongamos que existen n_0 y c tales que
+
+            0 <= c n ^3 <= n^2
+Implica     0 <= c n <= 1
+
+Lo cual es una contradicción, pues una función lineal no es acotada.
+
+--------------------------------------------------------------------------------
+
+Notación Theta:
+
+\theta(g(n)) = { f(n) : Existe c1, c2 >0, n_0 \in \N o {0}, tal que 0 <= c1 g(n) <= f(n) <= c2 g(n), Para todo n >= n_0 }
+
+
+Ejemplo 6: Demostrar que f(n) = 1/2n^2 - 3n \in \theta(n^2)
+
+Encontramos n0 y c1, c2, tales que
+
+            0 <= c1 n^2 <= 1/2n^2 - 3n <= c2 n^2        para n>= n0
+Implica     0 <= c1 <= 1/2 - 3/n <= c2          pues n \noteq 0
+
+Por lo que hay que considerar c1 = 1/14, c2 = 1/2 con n0 = 7
+
+Ejemplo 7: Demostrar que f(n) = 6 n^3 \noteq \theta(n^2)
+
+
+
+--------------------------------------------------------------------------------
+
+Método Maestro: Funciona para dar una cota del tiempo de ejecución del algoritmo
+
+
+
+--------------------------------------------------------------------------------
+03/ Febrero
+
+Cotas no Ajutadas
+
+o(g(n)) = { f(n): para toda c>0, existe n0 \in \N U {0} tales que 0<= f(n) <= cg(n) para toda n>=n0 }
+
+si f \in o(g) => f \in O(g)
+
+lim{n -> \infty} g/f = 0
+
+--------------------------------------------------------------------------------
+
+Ejercicio 1: Dada f(n) = 2n demostrar que f(n) \in o(n**2)
+
+Dada c>0 consideremos n0 >= 2/c
+
+--------------------------------------------------------------------------------
+
+Ejercicio 2: Dada f(n) = n**2 demostrar que f(n) \notin o(n**2)
+
+
+--------------------------------------------------------------------------------
+
+Cotas no ajustadas
+
+w(g(n)) = { f(n): para toda c>0, existe n0 \in \N U {0} tales que 0<= c f(n) <= g(n) para toda n>=n0 }
+
+lim{n -> \infty} g/f = \infty
+
+--------------------------------------------------------------------------------
+
+Ejercicio: Dada f(n) = n^2 / 2 demostrar que f \in w(n)
+
+Dada c>0, existe n0 \in N tal que
+
+
+--------------------------------------------------------------------------------
+
+Ejercicio: Dada f(n) = n demostrar que f \notin w(n**2)
+
+No pasa para c < 1
+
+
+--------------------------------------------------------------------------------
+
+Propiedades de la notación Asintótica
+
+Dadas funciones asintoticamente positivas f(n), g(n), h(n) se cumplen las siguientes relaciones
+
+Transitividad:       f \in O(g), g\in O(h) => f \in O(h)
+Reflexivilidad:     f \in O(f)
+Simetría            Solo se cumple para \Theta: f \in Theta(g) <-> g \in Theta(f)
+Simetría Transpuesta    f \in O(g) <-> g \in \Omega(f)
+                        (Tambien se cumple para la holgada ST) f \in o(g) <-> g \in w(f)
+
+
+--------------------------------------------------------------------------------
+
+Notación Estándar y funciones comunes
+
+Funciones monotónicamente crecientes (decrecientes)
+
+Si m <= n ->  f(m) <= f(n)     ( f(m) >= f(n) )
