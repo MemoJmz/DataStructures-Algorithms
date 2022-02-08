@@ -28,7 +28,15 @@ Eficiente -> Realice relativmente pocas operaciones elementales
 
 Comandos para correr en consola:
 
-Compilar/ General el ejecutalbe:    g++ NAME_FILE.cpp -o name_file
+Compilar/ General el ejecutalbe: g++ NAME_FILE.cpp -o name_file
+
+g++ -std=c++11 NAME_FILE.cpp -o name_file.o
+
+Lo cual significa:
+g++ el nombre del compilador, enlaza programas en C++
+-std=c++11 es la versión de la biblioteca estándar
+name_file.cpp es el nombre del archivo c++ que creamos
+
 
 Correr: name_file (.exe)
 
