@@ -1,0 +1,15 @@
+La programación orientada a objetos es un paradigma de programación,
+es decir, un modelo o un estilo de programación que nos da guias sobre
+cómo trabajar con él.
+
+¿Qué es un objeto?
+. Atributos
+. Métodos
+
+Conceptos:
+Herencia, Polimorfismo
+
+
+Clase: Elemento ("plantilla") para crear objetos
+
+pe. Clase Rectangulo
