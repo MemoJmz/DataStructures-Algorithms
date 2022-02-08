@@ -30,39 +30,11 @@ Comandos para correr en consola:
 
 Compilar/ General el ejecutalbe: g++ NAME_FILE.cpp -o name_file
 
-g++ -std=c++11 NAME_FILE.cpp -o name_file.o
+g++ -std=c++11 NAME_FILE.cpp -o name_file
 
 Lo cual significa:
 g++ el nombre del compilador, enlaza programas en C++
 -std=c++11 es la versión de la biblioteca estándar
 name_file.cpp es el nombre del archivo c++ que creamos
 
-
-Correr: name_file (.exe)
-
-
-
-// Quick Find Algorithm
-// C++ Language
-
-#include <iostream> // Flujo de datos de entrada y salida
-
-//No nos preocuparemos (por ahora) de memoria dinámica
-static conts int N = 10000;
-
-int main(){
-    int i, p, q, id[N];
-    // Inicializamos el arreglo
-    for(i=0; i<N; i++ ) id[i] = N;
-    // Forma de utilizar funciones de la libreria estandar "std::function"
-    while( std::cin >> p >> q)
-    {
-        int t = id[p];
-        if( t == id[q] ) continue;      // Si ya estan conectadas no hagas nada
-        for( i=0; i<N; i++ )
-            if( id[i] == t)
-                id[i] == id[q];         // Si no, etiqueta a todos los elementos del arreglo con la etiqueta de q
-        std::cout << '<' << p << ' ,' << q << '>' << std::endl;
-    }
-
-}
+Correr: name_file.exe
