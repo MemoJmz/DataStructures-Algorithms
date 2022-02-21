@@ -1,8 +1,7 @@
 #include <iostream>
 #include "ListaContactos.h"
 
-/*----------- Definición de los métodos de la Clase Contacto----------------*/
-// Constructor de contacto
+
 Contacto::Contacto(string nombre, string numero, string email){
     this->nombre = nombre;
     this->numero = numero;
@@ -13,74 +12,110 @@ Contacto::Contacto(string nombre, string numero, string email){
 }
 
 Contacto::~Contacto(){
+    std::cout << "Se ha eliminado el contacto:\n";
+    std::cout << "Nombre: " << nombre << "\n";
+    std::cout << "Numero: " << numero << "\n";
+    std::cout << "Email: " << email << "\n";
+    std::cout << "\n";
 }
 
 
-/*----------------------Definicion de los métodos de la Clase AgendaTel-------------*/
-
-// Constructor de ListaContactos
-ListaContactos::ListaContactos(){
-    head = new Contacto("", "", "");
+ListaContactos::ListaContactos()
+{
+    head = new Contacto("","","");
     contacto_actual = head;
 }
 
-ListaContactos::~ListaContactos(){
+ListaContactos::~ListaContactos()
+{
     Contacto *aux = head, *d;
-    while(aux != NULL){
+    while (aux != nullptr) {
         d = aux;
         aux = aux->siguiente;
         delete d;
     }
 }
 
-void ListaContactos::agregar_contacto(int n, Contacto* contacto){
-    Contacto* aux = head;
-    int i=0;
-    while(aux->siguiente && i<=n){
-        i++;
-        aux = aux->siguiente;
+void ListaContactos::agregar_contacto(int n, Contacto* contacto)
+{
+    int i = 0;
+    Contacto *aux = contacto_actual;
+    if (n >= 0) {
+        while (aux != nullptr && i < n) {
+            aux = aux->siguiente;
+            i++;
+        }
+        if (aux == nullptr || i != n) {
+            cout << "[ERROR] Posicion no valida\n";
+            return;
+        }
     }
-    if(i==n){
-        contacto->siguiente = aux->siguiente;
-        contacto->anterior = aux;
-        contacto_actual = contacto;
+    else {
+        while (aux != nullptr && i > n) {
+            aux = aux->anterior;
+            i--;
+        }
+        if (aux == nullptr || i != n) {
+            cout << "[ERROR] Posicion no valida\n";
+            return;
+        }
     }
-    else{
-        std::cout << "[ERROR] Posicion no valida\n";
-    }
-    return;
+
+    contacto->siguiente = aux->siguiente;
+    contacto->anterior = aux;
+    if (aux->siguiente != nullptr)
+        aux->siguiente->anterior = contacto;
+    aux->siguiente = contacto;
+
+    contacto_actual = contacto;
 }
 
-void ListaContactos::eliminar_contacto(int n){
-    Contacto* aux = head;
-    int i=1;    // Elimina la posibilidad de que se elimine head
-    while(aux->siguiente && i<=n){
-        i++;
-        aux = aux->siguiente;
+void ListaContactos::eliminar_contacto(int n)
+{
+    int i = 0;
+    Contacto *aux = contacto_actual;
+    if (n >= 0) {
+        while (aux != nullptr && i < n) {
+            aux = aux->siguiente;
+            i++;
+        }
+        if (aux == nullptr || i != n) {
+            cout << "[ERROR] Posicion no valida\n";
+            return;
+        }
     }
-    if(i==n){
-        contacto_actual = aux->anterior;
-        std::cout << "Se ha eliminado el contacto:\n";
-        std::cout << "Nombre: " << aux->nombre << "\n";
-        std::cout << "Numero: " << aux->numero << "\n";
-        std::cout << "Email: " << aux->email << "\n";
-        delete(aux);
+    else {
+        while (aux != nullptr && i > n) {
+            aux = aux->anterior;
+            i--;
+        }
+        if (aux == nullptr || i != n) {
+            cout << "[ERROR] Posicion no valida\n";
+            return;
+        }
+    }
+
+    if (aux == head) {
+        cout << "[ERROR] Posicion no valida\n";
         return;
     }
-    else{
-        cout << "[ERROR] Posicion no valida\n";
-    }
+
+    contacto_actual = aux->anterior;
+    aux->anterior->siguiente = aux->siguiente;
+    if (aux->siguiente != nullptr)
+        aux->siguiente->anterior = aux->anterior;
+    delete aux;
 }
 
-void ListaContactos::mostrar_lista(){
+void ListaContactos::mostrar_lista()
+{
     Contacto* aux = head->siguiente;
-    std::cout << "Lista de Contactos: \n";
-
-    while(aux){
-        std::cout << "Se ha eliminado el contacto:\n";
-        std::cout << "Nombre: " << aux->nombre << "\n";
-        std::cout << "Numero: " << aux->numero << "\n";
-        std::cout << "Email: " << aux->email << "\n";
+    int i = 1;
+    std::cout << "\n##### Lista de Contactos #####\n";
+    while (aux != nullptr) {
+        std::cout << i++ << ". " << aux->nombre << "\n";
+        aux = aux->siguiente;
     }
+    std::cout << "##########\n";
     return;
 }
