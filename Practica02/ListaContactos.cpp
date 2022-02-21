@@ -25,12 +25,12 @@ ListaContactos::ListaContactos(){
 }
 
 ListaContactos::~ListaContactos(){
-    Contacto* aux = head->siguiente;
-    while(head->siguiente){
-        
+    Contacto *aux = head, *d;
+    while(aux != NULL){
+        d = aux;
+        aux = aux->siguiente;
+        delete d;
     }
-    head = NULL;
-    return;
 }
 
 void ListaContactos::agregar_contacto(int n, Contacto* contacto){
