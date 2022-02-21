@@ -13,14 +13,8 @@ Contacto::Contacto(string nombre, string numero, string email){
 }
 
 Contacto::~Contacto(){
-    Contacto *aux1, *aux2;
-    if(siguiente){
-        aux1 = siguiente;
-    }
-    else if(anterior){
-        aux2 = anterior;
-    }
-
+    siguiente = NULL;
+    anterior = NULL;
 }
 
 

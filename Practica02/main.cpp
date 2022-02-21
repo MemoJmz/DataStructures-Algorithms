@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-    AgendaTel lista(50);
+    ListaContactos lista;
     Contacto* c1 = new Contacto("Santiago", "1234567890", "jose.vales@cimat.mx");
     Contacto* c2 = new Contacto("Juan", "0987654321", "hola.mundo@cimat.mx");
     Contacto* c3 = new Contacto("Joel", "1357924680", "adios.mundo@cimat.mx");
