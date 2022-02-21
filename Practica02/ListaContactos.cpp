@@ -13,8 +13,6 @@ Contacto::Contacto(string nombre, string numero, string email){
 }
 
 Contacto::~Contacto(){
-    siguiente = NULL;
-    anterior = NULL;
 }
 
 
