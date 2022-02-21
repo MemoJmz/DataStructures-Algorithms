@@ -20,7 +20,7 @@ Contacto::~Contacto(){
 
 // Constructor de ListaContactos
 ListaContactos::ListaContactos(){
-    head = NULL;
+    head = new Contacto("", "", "");
     contacto_actual = head;
 }
 
