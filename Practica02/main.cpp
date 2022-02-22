@@ -19,7 +19,7 @@ int main() {
     lista.eliminar_contacto(2); // Debe mostrar un error
     lista.eliminar_contacto(-1); // Elimina a Santiago
 
-    return 0;
+    return 1;
 }
 
 
