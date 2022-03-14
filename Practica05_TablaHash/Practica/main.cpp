@@ -1,8 +1,11 @@
 #include <iostream>
-#include <iomanip>
-#include <fstream>
+#include <iomanip>      // Header proving parametric manipulators (No se para que se utiliza)
+#include <fstream>      // Input/output stream class to operate on files
 #include <string>
-#include "HashTable.h"
+#include <utility>      // Include the class pair
+
+#include "HashTable.hpp"
+
 using namespace std;
 
 // ************************************************************************ UTILITIES *********************************************************************
@@ -20,11 +23,10 @@ string read_word(ifstream &file_reader){
     return word;
 }
 
-
 void query_word(string word, HashTable &table){
     pair<string, int>* p = table.find(word);
     if (p)
-        cout << word << " --count: " << p->second << endl;
+        cout << word << "\tcount: " << p->second << endl;
     else
         cout << word << " is not in vocabulary " << endl;
 }
@@ -33,6 +35,7 @@ void query_word(string word, HashTable &table){
 
 void update(string word, HashTable &table){
     // codigo para ir agregando palabras al vocabulario, que es la tabla hash.
+    table.insert(word, 1);
 }
 
 // ************************************************************************ DRIVER ************************************************************************
@@ -41,7 +44,7 @@ int main()
 {
     // open input file stream
     string filename = "words.txt";
-    std::ifstream readf(filename);
+    ifstream readf(filename);
 
     // declare hash HashTable or a reasonable size
     HashTable table(10000);
@@ -71,5 +74,6 @@ int main()
     query_word("pobreza", table);
     query_word("odebrecht", table);
     query_word("...", table);
+    
     return 0;
 }
