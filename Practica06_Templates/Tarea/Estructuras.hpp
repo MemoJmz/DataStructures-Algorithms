@@ -1,6 +1,7 @@
 //template <typename tipo>
-struct Nodo
+class Nodo
 {
+    public:
     int key;
     Nodo *left;
     Nodo *right;
@@ -10,8 +11,8 @@ struct Nodo
 class AVL{
     public:
     Nodo* insert(Nodo* r, int d);
-    void erase(int key);
-    Nodo* search(int key);
+    Nodo* erase(Nodo* r, int key);
+    Nodo* search(Nodo* r, int key);
 
     private:
     Nodo* root;
@@ -22,7 +23,7 @@ class AVL{
     Nodo* rightRotate(Nodo* root);
 
     int max(int a, int b);
-    int containsNodo(int d);
+    Nodo* min(Nodo* r);
 };
 
 class Set{
